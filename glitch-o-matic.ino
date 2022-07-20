@@ -1,7 +1,21 @@
 #include <Keyboard.h>
+/* ----- USB -----
+ * 1          RAW *
+ * 0          GND *
+ * GND        RST *
+ * GND        VCC *
+ * 2          21  *
+ * 3          20  *
+ * 4          19  *
+ * 5          18  *
+ * 6          15  *
+ * 7          14  *
+ * 8          16  *
+ * 9          10  *
+ */
 const int numButtons = 7;
 const int leds[7] = {10, 16, 14, 15, 18, 19, 20};
-const int buttons[7] = {2, 20, 21, 19, 18, 15, 9};
+const int buttons[7] = {9, 8, 7, 6, 5, 4, 3};
 const String buttonKeys[7] = {"G", "L", "I", "T", "C", "H", ""};
 bool buttonStates[7] = {false, false, false, false, false, false, false};
 void setup() {
