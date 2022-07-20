@@ -1,8 +1,8 @@
 #include <Keyboard.h>
 const int numButtons = 7;
-const int leds[7] = {3, 7, 6, 14, 16, 10, 8};
+const int leds[7] = {10, 16, 14, 15, 18, 19, 20};
 const int buttons[7] = {2, 20, 21, 19, 18, 15, 9};
-const String buttonKeys[7] = {"G", "L", "I", "T", "C", "H", "\n"};
+const String buttonKeys[7] = {"G", "L", "I", "T", "C", "H", ""};
 bool buttonStates[7] = {false, false, false, false, false, false, false};
 void setup() {
   Serial.begin(9600);
@@ -52,10 +52,20 @@ void loop() {
     } else {
       digitalWrite(leds[i], HIGH);
       if (buttonStates[i] == false) {
-        Keyboard.print(buttonKeys[i]);
-        delay(100);
+        if (buttonKeys[i].length() > 0) {
+          Keyboard.print(buttonKeys[i]);
+        }
       }
       buttonStates[i] = true;
     }
   }
+  Serial.println(buttonStatesAsString());
+}
+
+String buttonStatesAsString() {
+  String states = "";
+  for (int i = 0; i < numButtons; i++) {
+    states += buttonStates[i] ? "1" : "0";
+  }
+  return states;
 }
