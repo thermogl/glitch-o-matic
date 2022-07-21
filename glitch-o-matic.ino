@@ -14,8 +14,8 @@
  * 9          10  *
  */
 const int numButtons = 7;
-const int leds[7] = {10, 16, 14, 15, 18, 19, 20};
-const int buttons[7] = {9, 8, 7, 6, 5, 4, 3};
+const int leds[7] = {15, 18, 19, 14, 16, 10, 20};
+const int buttons[7] = {3, 4, 5, 6, 8, 9, 7};
 const String buttonKeys[7] = {"G", "L", "I", "T", "C", "H", ""};
 bool buttonStates[7] = {false, false, false, false, false, false, false};
 void setup() {
