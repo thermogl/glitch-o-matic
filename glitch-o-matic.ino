@@ -107,9 +107,9 @@ void loop() {
       buttonStates[i] = true;
     }
   }
-  printButtonStatesToSerialIfNecessary();
+  printButtonStatesToSerialIfChanged();
 }
-void printButtonStatesToSerialIfNecessary() {
+void printButtonStatesToSerialIfChanged() {
   String buttonStatesString = buttonStatesAsString();
   if (buttonStatesString.equals(lastButtonStateAsString) == false) {
     Serial.println(buttonStatesString);
