@@ -62,9 +62,9 @@ void setPinModes() {
   }
 }
 void startupDance() {
-  flashOnOff(3, 500);
+  flashOnOff(1, 500);
   flashSequentially(200);
-  flashOnOff(3, 500);
+  flashOnOff(1, 500);
 }
 void flashSequentially(int delayMs) {
   digitalWrite(buttons[0].ledPin, HIGH);
@@ -109,7 +109,6 @@ void loop() {
   }
   printButtonStatesToSerialIfNecessary();
 }
-
 void printButtonStatesToSerialIfNecessary() {
   String buttonStatesString = buttonStatesAsString();
   if (buttonStatesString.equals(lastButtonStateAsString) == false) {
@@ -117,7 +116,6 @@ void printButtonStatesToSerialIfNecessary() {
   }
   lastButtonStateAsString = buttonStatesString;
 }
-
 String buttonStatesAsString() {
   String states = "";
   for (int i = 0; i < numButtons; i++) {
