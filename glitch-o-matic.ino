@@ -1,3 +1,4 @@
+// ./arduino-cli compile -b arduino:avr:micro glitch-o-matic --upload --port /dev/cu.usbmodemHIDPC1
 #include <Keyboard.h>
 /* ----- USB -----
  * 1          RAW *
@@ -107,14 +108,12 @@ void loop() {
       buttonStates[i] = true;
     }
   }
-  printButtonStatesToSerialIfChanged();
+  printButtonStatesToSerial();
 }
-void printButtonStatesToSerialIfChanged() {
+void printButtonStatesToSerial() {
   String buttonStatesString = buttonStatesAsString();
-  if (buttonStatesString.equals(lastButtonStateAsString) == false) {
-    Serial.println(buttonStatesString);
-  }
-  lastButtonStateAsString = buttonStatesString;
+  Serial.println(buttonStatesString);
+  delay(100);
 }
 String buttonStatesAsString() {
   String states = "";
