@@ -14,38 +14,39 @@
  * 9          10  *
  */
 
+const int numKeyStrokes = 3;
 struct Button {
   int pin;
   int ledPin;
-  String key;
+  String keys[numKeyStrokes];
 };
 //const Button buttons[7] = {
-//  { 2, 3, "G"},
-//  { 20, 7, "L"},
-//  { 21, 6, "I"},
-//  { 19, 14, "T"},
-//  { 18, 16, "C"},
-//  { 15, 10, "H"},
-//  { 9, 8, ""}
+//  { 2, 3, {"G", "", ""}},
+//  { 20, 7, {"L", "", ""]},
+//  { 21, 6, {"I", "", ""]},
+//  { 19, 14, {"T", "", ""}},
+//  { 18, 16, {"C", "", ""}},
+//  { 15, 10, {"H", "", ""}},
+//  { 9, 8, {"\n", "1", "\n"}}
 //}; // v1
-//const Button buttons[7] = {
-//  { 3, 15, "G"},
-//  { 4, 18, "L"},
-//  { 5, 19, "I"},
-//  { 6, 14, "T"},
-//  { 8, 16, "C"},
-//  { 9, 10, "H"},
-//  { 7, 20, ""}
-//}; // v2
 const Button buttons[7] = {
-  { 8, 15, "G"},
-  { 6, 18, "L"},
-  { 4, 19, "I"},
-  { 9, 10, "T"},
-  { 7, 16, "C"},
-  { 5, 14, "H"},
-  { 3, 20, ""}
-}; // v3
+  { 3, 15, {"G", "", ""}},
+  { 4, 18, {"L", "", ""}},
+  { 5, 19, {"I", "", ""}},
+  { 6, 14, {"T", "", ""}},
+  { 8, 16, {"C", "", ""}},
+  { 9, 10, {"H", "", ""}},
+  { 7, 20, {"\n", "1", "\n"}}
+}; // v2
+//const Button buttons[7] = {
+//  { 8, 15, {"G", "", ""}},
+//  { 6, 18, {"L", "", ""}},
+//  { 4, 19, {"I", "", ""}},
+//  { 9, 10, {"T", "", ""}},
+//  { 7, 16, {"C", "", ""}},
+//  { 5, 14, {"H", "", ""}},
+//  { 3, 20, {"\n", "1", "\n"}}
+//}; // v3
 const int numButtons = 7;
 bool buttonStates[7] = {false, false, false, false, false, false, false};
 String lastButtonStateAsString = "";
@@ -97,9 +98,11 @@ void loop() {
     } else {
       digitalWrite(buttons[i].ledPin, HIGH);
       if (buttonStates[i] == false) {
-        if (buttons[i].key.length() > 0) {
-          Keyboard.print(buttons[i].key);
-          delay(100);
+        for (int k = 0; k < numKeyStrokes; k++) {
+          if (buttons[i].keys[k].length() > 0) {
+            Keyboard.print(buttons[i].keys[k]);
+            delay(100);
+          }
         }
       }
       buttonStates[i] = true;
