@@ -13,7 +13,6 @@
  * 8          16  *
  * 9          10  *
  */
-
 const int numKeyStrokes = 3;
 struct Button {
   int pin;
@@ -48,7 +47,7 @@ const Button buttons[7] = {
 //  { 3, 20, {"\n", "1", "\n"}}
 //}; // v3
 const int numButtons = 7;
-bool buttonStates[7] = {false, false, false, false, false, false, false};
+bool buttonStates[numButtons] = {false, false, false, false, false, false, false};
 String lastButtonStateAsString = "";
 void setup() {
   Serial.begin(9600);
