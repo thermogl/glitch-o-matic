@@ -39,6 +39,7 @@ const Button buttons[7] = {
 }; // v3
 const int numButtons = 7;
 bool buttonStates[7] = {false, false, false, false, false, false, false};
+String lastButtonStateAsString = "";
 void setup() {
   Serial.begin(9600);
   Keyboard.begin();
@@ -89,12 +90,21 @@ void loop() {
       if (buttonStates[i] == false) {
         if (buttons[i].key.length() > 0) {
           Keyboard.print(buttons[i].key);
+          delay(100);
         }
       }
       buttonStates[i] = true;
     }
   }
-  Serial.println(buttonStatesAsString());
+  printButtonStatesToSerialIfNecessary();
+}
+
+void printButtonStatesToSerialIfNecessary() {
+  String buttonStatesString = buttonStatesAsString();
+  if (buttonStatesString.equals(lastButtonStateAsString) == false) {
+    Serial.println(buttonStatesString);
+  }
+  lastButtonStateAsString = buttonStatesString;
 }
 
 String buttonStatesAsString() {
