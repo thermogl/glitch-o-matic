@@ -29,24 +29,24 @@ struct Button {
 //  { 15, 10, {"H", "", ""}},
 //  { 9, 8, {"\n", "1", "\n"}}
 //}; // v1
-const Button buttons[7] = {
-  { 3, 15, {"G", "", ""}},
-  { 4, 18, {"L", "", ""}},
-  { 5, 19, {"I", "", ""}},
-  { 6, 14, {"T", "", ""}},
-  { 8, 16, {"C", "", ""}},
-  { 9, 10, {"H", "", ""}},
-  { 7, 20, {"\n", "1", "\n"}}
-}; // v2
 //const Button buttons[7] = {
-//  { 8, 15, {"G", "", ""}},
-//  { 6, 18, {"L", "", ""}},
-//  { 4, 19, {"I", "", ""}},
-//  { 9, 10, {"T", "", ""}},
-//  { 7, 16, {"C", "", ""}},
-//  { 5, 14, {"H", "", ""}},
-//  { 3, 20, {"\n", "1", "\n"}}
-//}; // v3
+//  { 3, 15, {"G", "", ""}},
+//  { 4, 18, {"L", "", ""}},
+//  { 5, 19, {"I", "", ""}},
+//  { 6, 14, {"T", "", ""}},
+//  { 8, 16, {"C", "", ""}},
+//  { 9, 10, {"H", "", ""}},
+//  { 7, 20, {"\n", "1", "\n"}}
+//}; // v2
+const Button buttons[7] = {
+  { 8, 15, {"G", "", ""}},
+  { 6, 18, {"L", "", ""}},
+  { 4, 19, {"I", "", ""}},
+  { 9, 10, {"T", "", ""}},
+  { 7, 16, {"C", "", ""}},
+  { 5, 14, {"H", "", ""}},
+  { 3, 20, {"\n", "1", "\n"}}
+}; // v3
 const int numButtons = 7;
 bool buttonStates[numButtons] = {false, false, false, false, false, false, false};
 String lastButtonStateAsString = "";
@@ -113,7 +113,7 @@ void loop() {
 void printButtonStatesToSerial() {
   String buttonStatesString = buttonStatesAsString();
   Serial.println(buttonStatesString);
-  delay(100);
+  delay(50);
 }
 String buttonStatesAsString() {
   String states = "";
