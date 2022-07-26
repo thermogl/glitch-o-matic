@@ -90,6 +90,8 @@ void flashOnOff(int count, int delayMs) {
   }
 }
 void loop() {
+  int totalKeyStrokes = 0;
+  String keyStrokes[numButtons * numKeyStrokes];
   for (int i = 0; i < numButtons; i++) {
     int isPressed = digitalRead(buttons[i].pin);
     if (isPressed == HIGH) {
@@ -100,15 +102,20 @@ void loop() {
       if (buttonStates[i] == false) {
         for (int k = 0; k < numKeyStrokes; k++) {
           if (buttons[i].keys[k].length() > 0) {
-            Keyboard.print(buttons[i].keys[k]);
-            delay(100);
+            keyStrokes[totalKeyStrokes] = buttons[i].keys[k];
+            totalKeyStrokes += 1;
           }
         }
       }
       buttonStates[i] = true;
     }
   }
+  // we want to print the state immediately before invoking keystrokes because of the potential delay
   printButtonStatesToSerial();
+  for (int k = 0; k < totalKeyStrokes; k++) {
+    Keyboard.print(keyStrokes[k]);
+    delay(100);
+  }
 }
 void printButtonStatesToSerial() {
   String buttonStatesString = buttonStatesAsString();
